@@ -14,6 +14,7 @@
     <title>Página principal</title>
 </head>
 <body>
+    <p>hola</p>
     
     
 </body>
