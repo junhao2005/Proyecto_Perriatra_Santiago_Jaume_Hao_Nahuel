@@ -13,14 +13,15 @@
       <h1>🐾Bienvenido a Patitas Felices🐾</h1>
       
       <!-- Formulario Login -->
-      <form id="login" class="form active">
-        <label for="login-email">Correo electrónico</label>
-        <input type="email" id="login-email" required />
-        
-        <label for="login-password">Contraseña</label>
-        <input type="password" id="login-password" required />
-        
+      <form action="../Validacion/validacion.php" method="POST">
+        <label for="email">Nombre de usuario o email</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required>
+
         <button type="submit">Entrar</button>
+      </form>
         
     
     </div>
