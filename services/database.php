@@ -1,18 +1,16 @@
+
 <?php
-session_start();
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bd_perriatra";
+// Lo que permite es realizar que requiera las variables que generamos en el archivo de variables BBDD
+require_once "./database_config.php";
 
-// Establecer conexión
-$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Verificar conexión
+// Se realiza la conexion con la base de datos
+$conn = mysqli_connect($host, $username, $password, $dbname);
+
+
+// Verifica la conexion y si no es posible o algun campo es incorrecto te salta el error
 if (!$conn) {
-    $_SESSION['error'] = "Error de conexión: " . mysqli_connect_error();
-    header("Location: ../view/login.php");  
-    exit();
+    echo "<script> alert('Error de connexion')</script>";
+    die("Error de connexión" . mysqli_connect_error());
 }
-?>
