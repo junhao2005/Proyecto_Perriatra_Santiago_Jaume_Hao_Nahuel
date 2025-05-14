@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS `db_perriatra`;
 CREATE DATABASE db_perriatra;
 USE db_perriatra;
 
@@ -61,7 +62,8 @@ CREATE TABLE tbl_medicamento (
     id_medicamento INT AUTO_INCREMENT PRIMARY KEY,
     nombre_medicamento VARCHAR(50) NOT NULL,
     composición_medicamento VARCHAR(100) NOT NULL,
-    uso_medicamento VARCHAR(100) NOT NULL
+    uso_medicamento VARCHAR(100) NOT NULL,
+    img VARCHAR(100) NOT NULL
 );
 
 -- Tabla: tbl_historial
