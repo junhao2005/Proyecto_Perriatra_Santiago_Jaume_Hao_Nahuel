@@ -1,51 +1,58 @@
+
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener y limpiar datos del formulario
-    $email = trim($_POST["email"] ?? '');
-    $password = trim($_POST["password"] ?? '');
+    // Incluye la conexión a la base de datos
+    include '../services/database.php';
+    session_start();
 
-    $errores = [];
+    // Verifica si ha enviado el formulario con los campos 'user' y 'password'
+    if (isset($_POST['user']) && isset($_POST['password'])) {
+        
+        // Limpia el nombre de usuario para evitar inyecciones SQL
+        $user =  $_POST['user'];
 
-    // Validación: Email o nombre de usuario (mínimo 3 caracteres)
-    if (strlen($email) < 3) {
-        $errores[] = "El email o nombre de usuario debe tener al menos 3 caracteres.";
-    }
+        // Obtiene la contraseña tal como fue ingresada (sin escape porque será verificada con password_verify)
+        $password = $_POST['password'];
 
-    // Validación: Formato de email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errores[] = "El formato del email no es válido.";
-    }
+        // Crea la consulta SQL para buscar al usuario por su nombre
+        $sql = "SELECT * FROM propietario WHERE nombre = '$user'";
+        
+        // Ejecuta la consulta en la base de datos
+        $result = mysqli_query($conn, $sql);
 
-    // Validación: Contraseña
-    if (strlen($password) < 8) {
-        $errores[] = "La contraseña debe tener al menos 8 caracteres.";
-    }
+        // Verifica si la consulta tuvo resultados (es decir, si el usuario existe)
+        if ($result && mysqli_num_rows($result) > 0) {
 
-    if (!preg_match('/[A-Z]/', $password)) {
-        $errores[] = "La contraseña debe contener al menos una letra mayúscula.";
-    }
+            // Extrae los datos del usuario encontrado
+            $row = mysqli_fetch_assoc($result);
 
-    if (!preg_match('/[0-9]/', $password)) {
-        $errores[] = "La contraseña debe contener al menos un número.";
-    }
+            // Verifica que la contraseña ingresada coincida con la almacenada (hasheada) en la base de datos
+            if (password_verify($password, $row['password'])) {
+                
+                // Si la contraseña es correcta, guarda el nombre de usuario en la sesión
+                $_SESSION['usuario'] = $user;
 
-    if (empty($errores)) {
-        // Si todo es válido, hash de la contraseña
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-
-        // Aquí podrías comparar el hash con el almacenado en tu base de datos
-        echo "<h2>✅ Validación exitosa</h2>";
-        echo "<p>Email: $email</p>";
-        echo "<p>Hash de la contraseña: $passwordHash</p>";
-    } else {
-        // Mostrar errores
-        echo "<h2>❌ Errores de validación:</h2><ul>";
-        foreach ($errores as $error) {
-            echo "<li>$error</li>";
+                // Redirige al usuario a la página principal
+                header("Location: ../index.php");
+                exit();
+            } else {
+                // Si la contraseña no coincide, se guarda un mensaje de error
+                $error = "Contraseña incorrecta.";
+            }
+        } else {
+            // Si no se encontró ningún usuario con ese nombre, se guarda un mensaje de error
+            $error = "Usuario no encontrado.";
         }
-        echo "</ul><a href='javascript:history.back()'>Volver</a>";
+
+    } else {
+        // Si no se enviaron todos los campos del formulario, se guarda un mensaje de error
+        $error = "Por favor, rellena todos los campos.";
     }
-} else {
-    echo "Acceso no permitido.";
-}
+
+    // Cierra la conexión con la base de datos
+    mysqli_close($conn);
+
+    // Si ocurrió algún error, lo muestra al usuario
+    if (isset($error)) {
+        echo $error;
+    }
 ?>
