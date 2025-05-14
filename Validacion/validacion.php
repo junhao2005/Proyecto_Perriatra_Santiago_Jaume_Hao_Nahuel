@@ -7,11 +7,26 @@
     // Verifica si ha enviado el formulario con los campos 'user' y 'password'
     if (isset($_POST['user']) && isset($_POST['password'])) {
         
+
         // Limpia el nombre de usuario para evitar inyecciones SQL
         $user =  $_POST['user'];
-
         // Obtiene la contraseña tal como fue ingresada (sin escape porque será verificada con password_verify)
         $password = $_POST['password'];
+
+        $valinom= " ";
+        $valipas=" ";
+
+        if (strlen($valinom) < 3){
+            echo "El nombre de usuario debe tener al menos 3 caracteres.";
+            exit;
+        }
+
+        if (strlen($valipas) < 8 || 
+        !('/[A-Z]/', $valipas) || 
+        !('/[0-9]/', $valipas)) {
+        echo "La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.";
+        exit;
+        }
 
         // Crea la consulta SQL para buscar al usuario por su nombre
         $sql = "SELECT * FROM propietario WHERE nombre = '$user'";
