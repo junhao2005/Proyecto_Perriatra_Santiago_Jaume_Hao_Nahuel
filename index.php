@@ -23,7 +23,11 @@ include "./services/database.php"
 </head>
 <body>
     
-
+    <section>
+        <div>
+            <form action="add_user.php" method="POST" ></form>
+        </div>
+    </section>
     
 </body>
 </html>
