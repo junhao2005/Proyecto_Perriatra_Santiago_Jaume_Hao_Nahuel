@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS `db_perriatra`;
 CREATE DATABASE db_perriatra;
 USE db_perriatra;
 
@@ -61,7 +62,8 @@ CREATE TABLE tbl_medicamento (
     id_medicamento INT AUTO_INCREMENT PRIMARY KEY,
     nombre_medicamento VARCHAR(50) NOT NULL,
     composición_medicamento VARCHAR(100) NOT NULL,
-    uso_medicamento VARCHAR(100) NOT NULL
+    uso_medicamento VARCHAR(100) NOT NULL,
+    img VARCHAR(100) NOT NULL
 );
 
 -- Tabla: tbl_historial
@@ -82,9 +84,9 @@ CREATE TABLE tbl_historial (
 -- Tabla: tbl_usuarios
 CREATE TABLE tbl_usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_usuario VARCHAR(150),
-    contra_usuario VARCHAR(100),
-    rol ENUM('Veterinario', 'Usuarios'),
+    nombre_usuario VARCHAR(150) NOT NULL,
+    contra_usuario VARCHAR(100) NOT NULL,
+    email_usuario VARCHAR (100) NOT NULL,
     id_propietario INT,
     id_veterinario INT,
     FOREIGN KEY (id_propietario) REFERENCES tbl_propietario(id_propietario),
