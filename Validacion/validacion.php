@@ -2,11 +2,10 @@
 <?php
     // Incluye la conexión a la base de datos
     include '../services/database.php';
-    session_start();
 
     // Verifica si ha enviado el formulario con los campos 'user' y 'password'
     if (isset($_POST['user']) && isset($_POST['password'])) {
-        
+        session_start();
 
         // Limpia el nombre de usuario para evitar inyecciones SQL
         $user =  $_POST['user'];
@@ -25,6 +24,7 @@
 
         // Crea la consulta SQL para buscar al usuario por su nombre
         $sql = "SELECT * FROM tbl_usuarios WHERE nombre_usuario = '$user'";
+        $sql = "SELECT id_usuario FROM tbl_usuarios WHERE contra_usuario = '$password'";
         
         // Ejecuta la consulta en la base de datos
         $result = mysqli_query($conn, $sql);
@@ -36,7 +36,7 @@
             $row = mysqli_fetch_assoc($result);
 
             // Verifica que la contraseña ingresada coincida con la almacenada (hasheada) en la base de datos
-            if (password_verify($password, $row['password'])) {
+            if (password_verify($password, $password)) {
                 
                 // Si la contraseña es correcta, guarda el nombre de usuario en la sesión
                 $_SESSION['usuario'] = $user;
