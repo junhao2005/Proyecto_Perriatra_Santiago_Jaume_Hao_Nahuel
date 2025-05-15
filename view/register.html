@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Registro - Patitas Felices</title>
   <link rel="stylesheet" href="../css/styles.css" />
+  <script src="../css/ValRegister.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -14,21 +15,29 @@
       <form>
         <!-- Campo para el nombre -->
         <label for="nombre">Nombre</label> 
-        <input type="text" id="nombre" required /><br>
+        <input type="text" id="nombre" onblur="verifNombre()" required /><br>
+        <p id="errorUsu"></p>
 
         <!-- Campo para los apellidos -->
         <label for="apellidos">Apellidos</label> 
-        <input type="text" id="apellidos" required /><br>
+        <input type="text" id="apellidos" onblur="verifNombre()" required /><br>
+        <p id="errorApellidos"></p>
         
         <!-- Campo para el correo electrónico -->
         <label for="correo">Correo electrónico</label> 
-        <input type="email" id="correo" required /><br>
+        <input type="email" id="correo" onblur="verifEmail()" required /><br>
+        <p id="errorEmail"></p>
+
         <!-- Campo para la contraseña -->
         <label for="password">Contraseña</label> 
-        <input type="password" id="password" required /><br>
+        <input type="password" id="password" onblur="verifContra()" required /><br>
+        <p id="errorContra"></p>
+
         <!-- Campo para confirmar la contraseña -->
         <label for="confirm-password">Confirmar contraseña</label>
-        <input type="password" id="confirm-password" required /> <br>
+        <input type="password" id="confirm-password" onblur="verifContra()" required /> <br>
+        <p id="errorContraConfirm"></p>
+
         <!-- Botón para enviar el formulario -->
         <button type="submit">Registrarse</button>
         <!-- Enlace para ir al formulario de inicio de sesión -->
