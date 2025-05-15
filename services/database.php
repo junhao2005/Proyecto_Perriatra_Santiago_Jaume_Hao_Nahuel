@@ -1,10 +1,9 @@
 <?php
-session_start();
 
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "bd_perriatra";
+$dbname = "db_perriatra";
 
 // Establecer conexión
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -15,4 +14,5 @@ if (!$conn) {
     header("Location: ../view/login.php");  
     exit();
 }
+
 ?>

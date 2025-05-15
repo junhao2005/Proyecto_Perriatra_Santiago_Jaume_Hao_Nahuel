@@ -13,23 +13,18 @@
         // Obtiene la contraseña tal como fue ingresada (sin escape porque será verificada con password_verify)
         $password = $_POST['password'];
 
-        $valinom= " ";
-        $valipas=" ";
-
-        if (strlen($valinom) < 3){
+        if (strlen($user) < 3) {
             echo "El nombre de usuario debe tener al menos 3 caracteres.";
+            exit;
+        } else if (strlen($password) < 8 || 
+            !preg_match('/[A-Z]/', $password) || 
+            !preg_match('/[0-9]/', $password)) {
+            echo "La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.";
             exit;
         }
 
-        if (strlen($valipas) < 8 || 
-        !('/[A-Z]/', $valipas) || 
-        !('/[0-9]/', $valipas)) {
-        echo "La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.";
-        exit;
-        }
-
         // Crea la consulta SQL para buscar al usuario por su nombre
-        $sql = "SELECT * FROM propietario WHERE nombre = '$user'";
+        $sql = "SELECT * FROM tbl_usuarios WHERE nombre_usuario = '$user'";
         
         // Ejecuta la consulta en la base de datos
         $result = mysqli_query($conn, $sql);
