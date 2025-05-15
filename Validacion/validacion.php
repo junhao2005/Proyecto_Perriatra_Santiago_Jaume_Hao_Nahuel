@@ -23,8 +23,7 @@
         }
 
         // Crea la consulta SQL para buscar al usuario por su nombre
-        $sql = "SELECT * FROM tbl_usuarios WHERE nombre_usuario = '$user'";
-        $sql = "SELECT id_usuario FROM tbl_usuarios WHERE contra_usuario = '$password'";
+        $sql = "SELECT contra_usuario FROM tbl_usuarios WHERE nombre_usuario = '$user'";
         
         // Ejecuta la consulta en la base de datos
         $result = mysqli_query($conn, $sql);
@@ -36,7 +35,7 @@
             $row = mysqli_fetch_assoc($result);
 
             // Verifica que la contraseña ingresada coincida con la almacenada (hasheada) en la base de datos
-            if (password_verify($password, $password)) {
+            if ($password === $row['contra_usuario']) {
                 
                 // Si la contraseña es correcta, guarda el nombre de usuario en la sesión
                 $_SESSION['usuario'] = $user;
