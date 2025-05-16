@@ -1,25 +1,27 @@
 
 <?php
-    // Incluye la conexión a la base de datos
+    // conexion con base de datos
     include '../services/database.php';
 
+    $error = " ";
     // Verifica si ha enviado el formulario con los campos 'user' y 'password'
     if (isset($_POST['user']) && isset($_POST['password'])) {
+        // Inicia la sesión para poder guardar datos del usuario si el login es exitoso
         session_start();
 
-        // Limpia el nombre de usuario para evitar inyecciones SQL
+        // Obtiene el nombre de usuario y contraseña desde el formulario
         $user =  $_POST['user'];
-        // Obtiene la contraseña tal como fue ingresada (sin escape porque será verificada con password_verify)
         $password = $_POST['password'];
 
+        // validacion de nombre y contraseña que cumpla siguiente regla
         if (strlen($user) < 3) {
-            echo "El nombre de usuario debe tener al menos 3 caracteres.";
-            exit;
+            $error = "El nombre de usuario debe tener al menos 3 caracteres.";
+          
         } else if (strlen($password) < 8 || 
             !preg_match('/[A-Z]/', $password) || 
             !preg_match('/[0-9]/', $password)) {
-            echo "La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.";
-            exit;
+            $error = "La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.";
+            
         }
 
         // Crea la consulta SQL para buscar al usuario por su nombre
@@ -45,11 +47,11 @@
                 exit();
             } else {
                 // Si la contraseña no coincide, se guarda un mensaje de error
-                $error = "Contraseña incorrecta.";
+                header("Location: ../view/login.html");
             }
         } else {
             // Si no se encontró ningún usuario con ese nombre, se guarda un mensaje de error
-            $error = "Usuario no encontrado.";
+            header("Location: ../view/login.html");
         }
 
     } else {
