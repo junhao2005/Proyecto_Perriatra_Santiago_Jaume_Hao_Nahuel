@@ -223,3 +223,29 @@ function verifVacunado() {
   errorVacunado.textContent = "";
   return true;
 }
+
+function verifIdEspecie() {
+    let numeroIdEspecie= document.getElementById("id_especie").value;
+    let errorIdEspecie= document.getElementById("errorIdEspecie");
+
+    if(numeroIdEspecie==null || numeroIdEspecie==""){
+        errorIdEspecie.textContent= "El campo no puede estar vacío";
+        return false;
+    }else if(numeroIdEspecie!=isNaN){
+        errorIdEspecie.textConetent="El campo solo puede contener numeros";
+        return false;
+    }
+}
+
+function verifIdEspecie() {
+    let numeroIdPropietario= document.getElementById("id_propietario").value;
+    let errorIdPropietario= document.getElementById("errorIdPropietario");
+
+        if(numeroIdPropietario==null || numeroIdEspecie==""){
+        errorIdPropietario.textContent= "El campo no puede estar vacío";
+        return false;
+    }else if(numeroIdPropietario!=isNaN){
+        errorIdPropietario.textConetent="El campo solo puede contener numeros";
+        return false;
+    }
+}
