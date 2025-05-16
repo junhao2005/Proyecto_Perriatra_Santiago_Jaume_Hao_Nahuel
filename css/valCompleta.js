@@ -37,7 +37,7 @@ function verifNombreRegister(){
         errorUsuario.textContent= "El campo no puede estar vacío";
         return false;
     }else if(/\d/.test(usuario)){
-        errorusuario.textContent="El campo no puede contener numeros";
+        errorUsuario.textContent="El campo no puede contener numeros";
         return false;
     }else if(usuario.length<3){
         errorUsuario.textContent= "El campo no puede tener menos de 3 caracteres";
@@ -56,7 +56,7 @@ function verifApellidoRegister1(){
         errorApellido1.textContent= "El campo no puede estar vacío";
         return false;
     }else if(/\d/.test(apellido1)){
-        errorusuario.textContent="El campo no puede contener numeros";
+        errorApellido1.textContent="El campo no puede contener numeros";
         return false;
     }else if(apellido1.length<3){
         errorApellido1.textContent= "El campo no puede tener menos de 3 caracteres";
