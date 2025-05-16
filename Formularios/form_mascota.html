@@ -6,6 +6,12 @@
   <title>Registrar Animal - Patitas Felices</title>
   <link rel="stylesheet" href="../css/styles.css">
   <script src="../css/valCompleta.js" defer></script>
+  <style>
+    .error {
+      color: red;
+      font-size: 0.8em;
+    }
+    </style>
 </head>
 <body>
   <div class="container">
@@ -17,8 +23,8 @@
         <p class= "error" id="errorChip"></p>
 
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" onblur="verifNombre()" required> <br>
-        <p class= "error" id="errorUsuario"></p>
+        <input type="text" id="nombreMascota" name="nombre" onblur="verifNombreMascota()" required> <br>
+        <p class= "error" id="errorUsuarioMascota"></p>
 
         <label for="sexo">Sexo</label>
         <select id="sexo" name="sexo" onblur="verifSexo()" required>

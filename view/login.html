@@ -6,7 +6,12 @@
   <title>Veterinaria Patitas Felices - Login / Registro</title>
   <link rel="stylesheet" href="../css/styles.css" />
   <script src="../css/valCompleta.js" defer></script>
-  
+    <style>
+    .error {
+      color: red;
+      font-size: 0.8em;
+    }
+    </style>
 </head>
 <body>
   <div class="container">
@@ -16,12 +21,12 @@
       <!-- Formulario Login -->
       <form id="login" class="form active">
         <label for="login-email">Correo electrónico</label>
-        <input type="email" id="login-email" onblur="verifEmail()" required />
-        <p id="errorEmail"></p>
+        <input type="email" id="login-email" onblur="verifEmailLogin()" required />
+        <p class="error" id="errorEmailLogin"></p>
         
         <label for="login-password">Contraseña</label>
         <input type="password" id="login-password" onblur="verifContraLogin()" required />
-        <p id="errorContra"></p>
+        <p class="error" id="errorContraLogin"></p>
         
         <button type="submit">Entrar</button>
         
