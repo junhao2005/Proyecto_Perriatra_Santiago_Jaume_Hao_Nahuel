@@ -11,24 +11,26 @@
     <div class="form-container">
       <h1>🐾 Registro</h1>
       <!-- Formulario de registro -->
-      <form>
+      <form action="../Validacion/validacion_register.php" method="POST">
         <!-- Campo para el nombre -->
         <label for="nombre">Nombre</label> 
-        <input type="text" id="nombre" required /><br>
+        <input type="text" id="nombre" name="nombre" required /><br>
 
         <!-- Campo para los apellidos -->
         <label for="apellidos">Apellidos</label> 
-        <input type="text" id="apellidos" required /><br>
+        <input type="text" id="apellidos" name="apellidos" required /><br>
         
         <!-- Campo para el correo electrónico -->
         <label for="correo">Correo electrónico</label> 
-        <input type="email" id="correo" required /><br>
+        <input type="email" id="correo" name="correo" required /><br>
+
         <!-- Campo para la contraseña -->
         <label for="password">Contraseña</label> 
-        <input type="password" id="password" required /><br>
+        <input type="password" id="password" name="password" required /><br>
+
         <!-- Campo para confirmar la contraseña -->
         <label for="confirm-password">Confirmar contraseña</label>
-        <input type="password" id="confirm-password" required /> <br>
+        <input type="password" id="confirm-password" name="confirm-password" required /><br>
         <!-- Botón para enviar el formulario -->
         <button type="submit">Registrarse</button>
         <!-- Enlace para ir al formulario de inicio de sesión -->
