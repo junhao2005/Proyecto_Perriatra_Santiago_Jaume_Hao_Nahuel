@@ -54,7 +54,7 @@ if (!$result) {
             <a href="index.php" class="btn btn-dark">Inicio</a>
         </div>
         <div id="inicio_2">
-            <a href="index.php" class="btn btn-dark">Inicio</a>
+            <a href="index.php" class="btn btn-dark">PERRITOS</a>
         </div>
     </div>
 </nav>
@@ -96,9 +96,9 @@ if (!$result) {
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo date('d/m/Y', strtotime($row['fecha_registro'])); ?></td>
                 <td>
-                    <a href="./proces/modificar.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Modificar</a>
-                    <a href="./proces/delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
-                    <a href="contactos.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Contactos</a>
+                <a href="./proces/modificar.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Modificar</a>
+                <a href="./proces/delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
+                <a href="contactos.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Contactos</a>
                 </td>
             </tr>
         <?php endwhile; ?>
