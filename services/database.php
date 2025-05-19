@@ -1,16 +1,19 @@
-
 <?php
 
-// Lo que permite es realizar que requiera las variables que generamos en el archivo de variables BBDD
-require_once "./database_config.php";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_perriatra";
+
+// Lo que estamos realizando aquí es asignando variables las cuales luego nos permitirán realizar la conexion con la BBDD
 
 
-// Se realiza la conexion con la base de datos
-$conn = mysqli_connect($host, $username, $password, $dbname);
+// Se realiza la conexión con la base de datos
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-
-// Verifica la conexion y si no es posible o algun campo es incorrecto te salta el error
+// Verifica la conexión y si no es posible o algún campo es incorrecto te salta el error
 if (!$conn) {
-    echo "<script> alert('Error de connexion')</script>";
-    die("Error de connexión" . mysqli_connect_error());
+    echo "<script> alert('Error de conexión')</script>";
+    die("Error de conexión: " . mysqli_connect_error());
 }
+?>
